@@ -1,0 +1,22 @@
+{
+  "name": "blog_board",
+  "version": "1.0.0",
+  "description": "Simple Blog web",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhpp114/Blog_Board.git"
+  },
+  "author": "Jun Hyung Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhpp114/Blog_Board/issues"
+  },
+  "homepage": "https://github.com/jhpp114/Blog_Board#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
