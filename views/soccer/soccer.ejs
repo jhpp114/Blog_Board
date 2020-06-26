@@ -1,1 +1,22 @@
-<h1>Soccer Blog</h1>
+<%- include('../partials/header') %>
+
+<div class="container">
+    <h1>Soccer Blog  <a href="/blog/soccer/new"> <i class="fa fa-plus-circle"></i> </a>
+        
+    </h1>
+    <div class="row">
+        <% dummySoccerTeams.forEach(function(dummySoccerTeam) { %>
+        <div class="col-md-3">
+            <figure class="figure">
+                <a href="/blog/soccer">
+                    <img class="figure-img img-fluid rounded" 
+                    src="<%=dummySoccerTeam.image%>"
+                    alt="Soccer Teams"></a>
+                    <figcaption class="figure-caption"><%=dummySoccerTeam.teamname%></figcaption> 
+                    <p><%=dummySoccerTeam.description%></p>
+            </figure>
+        </div>
+    <%}); %>
+    </div>
+</div>
+<%- include('../partials/footer') %>

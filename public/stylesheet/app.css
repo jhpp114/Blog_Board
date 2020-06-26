@@ -16,3 +16,12 @@
     object-fit: cover;
 
 }
+/* Soccer Page CSS */
+.create_title {
+    text-align: center;
+}
+
+.create_new {
+    width: 30%;
+    margin: 10px  auto;
+}
