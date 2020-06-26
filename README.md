@@ -9,8 +9,7 @@
 ```bash
 .
 ├── README.md
-├── app.js
-├── node_modules
+├── app.js      
 ├── package.json
 ├── public
 │   └── stylesheet
@@ -21,6 +20,7 @@
     │   ├── footer.ejs
     │   └── header.ejs
     ├── soccer
+    │   ├── new.ejs
     │   └── soccer.ejs
     └── welcome.ejs
 ```bash
