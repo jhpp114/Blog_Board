@@ -13,6 +13,7 @@ a:link {
 a:hover {
     font-weight: bold;
     color: purple;
+    border-bottom: 1px solid purple;
 }
 /* ===================================================*/
 /* ==================welcome Page=====================*/
@@ -68,6 +69,14 @@ figcaption strong {
     width: 30%;
     margin: 10px  auto;
 }
+
+.form-group input:focus {
+    border: 2px solid blue;
+}
+
+.form-group textarea:focus {
+    border: 2px solid blue;
+}
 /* ===================================================*/
 /* ============blog/soccer/detail Page============== */
 /* ===================================================*/
@@ -75,6 +84,17 @@ figcaption strong {
     padding: 50px;
     background: rgba(204, 204, 204, 0.3);
     width: auto;
+}
+/* Media Query for blog/soccer/detail */
+@media (max-width: 1200px) {
+    .details_info_background {
+        background-color: blue;
+        display: block;
+        margin: 0 auto;
+    }
+    .detail_Picture {
+        margin: 0 auto
+    }
 }
 
 .detail_Picture {
