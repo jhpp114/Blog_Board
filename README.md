@@ -3,6 +3,7 @@
 - install npm framework
 - express
 - ejs
+- mongoose
 
 
 # Current Tree
@@ -11,6 +12,8 @@
 ├── README.md
 ├── app.js      
 ├── package.json
+├── models
+|   └── soccer.js
 ├── public
 │   └── stylesheet
 │       └── app.css
@@ -20,6 +23,7 @@
     │   ├── footer.ejs
     │   └── header.ejs
     ├── soccer
+    |   ├── detail.ejs
     │   ├── new.ejs
     │   └── soccer.ejs
     └── welcome.ejs
