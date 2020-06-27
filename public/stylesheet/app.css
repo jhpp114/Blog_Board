@@ -1,4 +1,22 @@
-/* welcome Page */
+/* Glboal */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+/* ===================================================*/
+/* =================header Page====================== */
+/* ===================================================*/
+a:link {
+    color: purple;
+}
+a:hover {
+    font-weight: bold;
+    color: purple;
+}
+/* ===================================================*/
+/* ==================welcome Page=====================*/
+/* ===================================================*/
 .welcomepage {
     background-image: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
     width: 100%;
@@ -14,9 +32,15 @@
     width: 200px;
     height: 150px;
     object-fit: cover;
-
+    border: 2px solid purple;
 }
-/* Soccer Page CSS */
+.figure img:hover {
+    box-shadow: 2px 2px 2px 2px red;
+}
+
+/* ===================================================*/
+/* =============== Soccer Page CSS ===================*/
+/* ===================================================*/
 .create_title {
     text-align: center;
 }
@@ -25,20 +49,30 @@
     width: 30%;
     margin: 10px  auto;
 }
-
-/* blogs/soccer/detail Page */
-.detail_Container {
-    /* // 후.... css..... */
-    /* ok do it later */
+/* ===================================================*/
+/* ============blogs/soccer/detail Page============== */
+/* ===================================================*/
+.details_Info_background {
+    padding: 50px;
+    background: rgba(204, 204, 204, 0.3);
+    width: auto;
 }
 
 .detail_Picture {
     margin-top: 15%;
-    margin-bottom: 25%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .detail_Info {
     margin-top: 20%;
 }
-#test{
+p.test{
     display: inline;
+}
+
+/* ===================================================*/
+/* =====================Footer======================= */
+/* ===================================================*/
+footer {
+    margin-top: 20px;
 }
