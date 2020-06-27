@@ -6,11 +6,12 @@
             <img src="<%=foundData.image%>" alt="">
         </div>
         <!-- Item detail information -->
-        <div class="col-md-6 detail_Info">
-            <div class="details_Info_background">
-                <h3 class="test"><%=foundData.teamname%></h3> 
+        <div class="col-md-6 detail_info">
+            <div class="details_info_background">
+                <h3 class="details_info_title"><%=foundData.teamname%></h3> 
+                <hr class="details_info_sepeate_line">
                 <p><%=foundData.createdDate.toDateString() %></p>
-                <p><%=foundData.description%></p>
+                <p class="details_info_description"><%=foundData.description%></p>
             </div> 
             
         </div>

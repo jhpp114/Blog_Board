@@ -23,11 +23,15 @@ a:hover {
     height: 100%;
 }
 
-.jumbotron {
-    background: rgba(204, 204, 204, 0.5);
+.jumbotron,
+.welcome_contents {
+    background: rgba(204, 204, 204, 0.8);
 }
 
-/* blogs Page */
+
+/* ===================================================*/
+/* ===================/blog Page======================*/
+/* ===================================================*/
 .figure img {
     width: 200px;
     height: 150px;
@@ -37,9 +41,24 @@ a:hover {
 .figure img:hover {
     box-shadow: 2px 2px 2px 2px red;
 }
+/* ===================================================*/
+/* =================blog/soccer Page==================*/
+/* ===================================================*/
+/* Todo: On blog/soccer/detail Page will contains very similar style. 
+         if nothing will be specialized on that page then refactor the code.
+*/
+
+/* team name of the data */
+figcaption strong {
+    text-transform: capitalize;
+}
+
+.soccer_description::first-letter {
+    text-transform: capitalize;
+}
 
 /* ===================================================*/
-/* =============== Soccer Page CSS ===================*/
+/* ===============blog/soccer/new Page================*/
 /* ===================================================*/
 .create_title {
     text-align: center;
@@ -50,9 +69,9 @@ a:hover {
     margin: 10px  auto;
 }
 /* ===================================================*/
-/* ============blogs/soccer/detail Page============== */
+/* ============blog/soccer/detail Page============== */
 /* ===================================================*/
-.details_Info_background {
+.details_info_background {
     padding: 50px;
     background: rgba(204, 204, 204, 0.3);
     width: auto;
@@ -63,11 +82,24 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
 }
-.detail_Info {
+
+.detail_info {
     margin-top: 20%;
 }
-p.test{
+
+h3.details_info_title{
     display: inline;
+    text-transform: capitalize;
+}
+
+.details_info_sepeate_line {
+    background-color: purple;
+    width: calc(20% - 10px);
+    height: 2px;
+}
+
+.details_info_description::first-letter {
+    text-transform: capitalize;
 }
 
 /* ===================================================*/
