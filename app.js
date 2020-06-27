@@ -1,7 +1,19 @@
+// requires from npm
 const express = require('express');
 const { urlencoded } = require('express');
+const mongoose = require('mongoose');
 const PORT_NUMBER = 3000;
 const app = express();
+const Soccer = require('./models/soccer');
+// ==================
+// =Database Connect=
+// ==================
+mongoose.connect('mongodb://localhost/my_blog_board', {
+    useNewUrlParser: true
+,   useUnifiedTopology: true
+})
+.then(() => console.log("DB Connected"))
+.catch( (error) => console.log(`Error on connecting database ${error}`));
 
 // app configure
 app.set('view engine', 'ejs');
@@ -23,23 +35,9 @@ app.get('/blogs', function(req, res) {
 // ===============
 // ===Soccer======
 // ===============
-
-// todo: create dummy data for now
-//       later change it into database mongodb
-let dummyDataSoccer = [
-    {
-        teamname: "Kid Team"
-    ,   image: "https://images.unsplash.com/photo-1572281004596-898318f2b1b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    ,   description: "Dummy description for Kid Team"
-    },
-    {
-        teamname: "Red Team"
-    ,   image: "https://images.unsplash.com/photo-1582586302869-715be816f60b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-    ,   description: "Dummy description for Read Team"
-    }
-];
 // display all soccer data
-app.get('/blog/soccer', function(req, res) {
+app.get('/blog/soccer', async function(req, res) {
+    let dummyDataSoccer = await Soccer.find({});
     res.render('soccer/soccer', {dummySoccerTeams: dummyDataSoccer});
 });
 
@@ -48,18 +46,16 @@ app.get('/blog/soccer/new', function(req, res) {
     res.render('soccer/new');
 });
 
-// todo: connect it to store in database 
-//       for now it will just push it to the dummy data.
+
 // post the data sended from the form create
-// Cannot POST /blog/soccer
-app.post('/blog/soccer', function(req, res) {
+app.post('/blog/soccer', async function(req, res) {
     let newPostData = req.body.soccer;
-    dummyDataSoccer.push(newPostData);
+    await Soccer.create(newPostData);
+    // await Soccer.save();
+    // dummyDataSoccer.push(newPostData);
     res.redirect('/blog/soccer');
 });
-
-// todo: connect it to database to display detail information
-//       for now it will just display dummy data detail.
+// 오예~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 app.listen(PORT_NUMBER, function(req, res) {
     console.log(`BLOG BOARD APP RUNNING: ${PORT_NUMBER}`);
