@@ -1,4 +1,4 @@
-/* welcome Page CSS */
+/* welcome Page */
 .welcomepage {
     background-image: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
     width: 100%;
@@ -9,7 +9,7 @@
     background: rgba(204, 204, 204, 0.5);
 }
 
-/* blogs Page CSS */
+/* blogs Page */
 .figure img {
     width: 200px;
     height: 150px;
@@ -24,4 +24,21 @@
 .create_new {
     width: 30%;
     margin: 10px  auto;
+}
+
+/* blogs/soccer/detail Page */
+.detail_Container {
+    /* // 후.... css..... */
+    /* ok do it later */
+}
+
+.detail_Picture {
+    margin-top: 15%;
+    margin-bottom: 25%;
+}
+.detail_Info {
+    margin-top: 20%;
+}
+#test{
+    display: inline;
 }

@@ -46,7 +46,6 @@ app.get('/blog/soccer/new', function(req, res) {
     res.render('soccer/new');
 });
 
-
 // post the data sended from the form create
 app.post('/blog/soccer', async function(req, res) {
     let newPostData = req.body.soccer;
@@ -55,8 +54,15 @@ app.post('/blog/soccer', async function(req, res) {
     // dummyDataSoccer.push(newPostData);
     res.redirect('/blog/soccer');
 });
-// 오예~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+// get detail page and render it base on the pass id.
+app.get('/blog/soccer/:id', async function(req, res) {
+    let foundData = await Soccer.findById(req.params.id);
+    res.render('soccer/detail', {foundData: foundData});
+});
+
+// Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {
     console.log(`BLOG BOARD APP RUNNING: ${PORT_NUMBER}`);
 });

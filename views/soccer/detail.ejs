@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<div class="container detail_Container">
+    <div class="row">
+        <!-- Item picture -->
+        <div class="col-md-6 detail_Picture">
+            <img src="<%=foundData.image%>" alt="">
+        </div>
+        <!-- Item detail information -->
+        <div class="col-md-6 detail_Info">
+            <div>
+                <h3 id="test"><%=foundData.teamname%></h3> 
+                <p><%=foundData.createdDate.toDateString() %></p>
+            </div> 
+            <p><%=foundData.description%></p>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
