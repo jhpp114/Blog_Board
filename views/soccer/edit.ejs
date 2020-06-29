@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <h2 class="create_new">Edit <%=editData.teamname%></h2>
+    <!-- after edit, it will redirect to detail page -->
+    <form action="/blog/soccer/<%=editData._id%>?_method=PUT" method="POST">
+        <div class="row">
+            <div class="create_new">
+                <div class="form-group">
+                    <label>Team name</label>
+                    <input class="form-control" type="text" name="soccer[teamname]" value="<%=editData.teamname%>">
+                </div>
+                <div class="form-group">
+                    <label>Image url</label>
+                    <input class="form-control" type="text" name="soccer[image]" value="<%=editData.image%>">
+                </div>
+                <div class="form-group">
+                     <label>Description</label>
+                     <textarea class="form-control" name="soccer[description]" col="50" row="50"><%=editData.description%></textarea>
+                </div>
+                <button class="btn btn-primary btn-block">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

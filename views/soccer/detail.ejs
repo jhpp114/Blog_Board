@@ -13,7 +13,17 @@
                 <p><%=foundData.createdDate.toDateString() %></p>
                 <p class="details_info_description"><%=foundData.description%></p>
             </div> 
-            
+            <!-- Edit button -->
+            <!-- I will just use bootstrap for now
+                    and change it into my own css -->
+                    <!-- so i need id of the data that i am changing. -->
+            <a class="btn btn-info btn-sm" href="/blog/soccer/<%=foundData._id%>/edit">Edit</a>
+            <!-- Delete -->
+            <!-- where should we go... after delete. 
+                    Obvisouly I need id of the item to delete -->
+            <form class="deleteForm" action="/blog/soccer/<%=foundData._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger btn-sm">Delete</button>
+            </form>
         </div>
     </div>
 </div>

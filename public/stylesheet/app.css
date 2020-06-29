@@ -7,14 +7,40 @@
 /* ===================================================*/
 /* =================header Page====================== */
 /* ===================================================*/
-a:link {
-    color: purple;
+.navigation_bar {
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    justify-content: space-around;
+    min-height: 3em;
+    align-items: center;
+    color: rgb(73, 73, 73);
 }
-a:hover {
-    font-weight: bold;
-    color: purple;
-    border-bottom: 1px solid purple;
+
+.navigation_bar h3 {
+    text-transform: uppercase;
+    display:inline;
+    letter-spacing: 0.25em;
 }
+
+.navigation_bar ul {
+    display: flex;
+    width: 70%;
+    font-size: 1.5rem;
+    justify-content: space-around;
+}
+
+.navigation_bar ul li {
+    list-style: none;
+    padding-top: 1em;
+}
+.navigation_bar ul li a {
+    text-decoration: none;
+    color: rgb(73, 73, 73);
+}
+.navigation_bar ul li a:hover {
+    font-size: 1.0rem;
+}
+
 /* ===================================================*/
 /* ==================welcome Page=====================*/
 /* ===================================================*/
@@ -28,7 +54,6 @@ a:hover {
 .welcome_contents {
     background: rgba(204, 204, 204, 0.8);
 }
-
 
 /* ===================================================*/
 /* ===================/blog Page======================*/
@@ -60,6 +85,9 @@ figcaption strong {
 
 /* ===================================================*/
 /* ===============blog/soccer/new Page================*/
+/* ===============blog/soccer/edit Page============== */
+/* Todo: change the name of the class name because 
+         it also edits */
 /* ===================================================*/
 .create_title {
     text-align: center;
@@ -76,6 +104,10 @@ figcaption strong {
 
 .form-group textarea:focus {
     border: 2px solid blue;
+}
+
+.deleteForm {
+    display: inline;
 }
 /* ===================================================*/
 /* ============blog/soccer/detail Page============== */
