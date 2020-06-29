@@ -1,10 +1,10 @@
 # Blog_Board
 
-- install npm framework
-- express
-- ejs
-- mongoose
-
+# npm framework used
+- npm install express
+- npm install ejs
+- npm install mongoose
+- npm install method-override
 
 # Current Tree
 ```bash
@@ -23,7 +23,8 @@
     │   ├── footer.ejs
     │   └── header.ejs
     ├── soccer
-    |   ├── detail.ejs
+    │   ├── detail.ejs
+    │   ├── edit.ejs
     │   ├── new.ejs
     │   └── soccer.ejs
     └── welcome.ejs
