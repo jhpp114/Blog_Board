@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 
-// Todo: Create Post Data 
-// add it on to the database
-// ======soccerSchema========
-// ======teamname=========
-// ======image url========
-// ======description======
+// Todo:
+// Connect the comment to the soccer blog
 let soccerSchema = new mongoose.Schema({
     teamname: String
 ,   image: String
 ,   description: String
+,   comments: [
+    {
+        type: mongoose.Schema.Types.ObjectId
+    ,   ref: "Comment"
+    }
+]
 ,   createdDate: {
         type: Date
     ,   default: Date.now

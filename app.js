@@ -5,7 +5,17 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const PORT_NUMBER = 3000;
 const app = express();
+// const seedDb = require('./seed');
+// // const seed = require('seed')
+
+// seedDb();
+// console.log("seed ran!");
+// ==================
+// ==Require Models==
+// ==================
 const Soccer = require('./models/soccer');
+const Comment = require('./models/comment');
+const comment = require('./models/comment');
 // ==================
 // =Database Connect=
 // ==================
@@ -58,9 +68,15 @@ app.post('/blog/soccer', async function(req, res) {
     res.redirect('/blog/soccer');
 });
 // get detail page and render it base on the pass id.
-app.get('/blog/soccer/:id', async function(req, res) {
-    let foundData = await Soccer.findById(req.params.id);
-    res.render('soccer/detail', {foundData: foundData});
+app.get('/blog/soccer/:id', function(req, res) {
+    Soccer.findById(req.params.id).populate("comments").exec(function(error, foundData) {
+        if (error) {
+            console.log("Oops, fail to retrive data for detail page");
+            console.log(error);
+        } else {
+            res.render('soccer/detail', {foundData: foundData});
+        }
+    });
 });
 // render edit form to user base on the data found
 app.get('/blog/soccer/:id/edit', async function(req, res) {
@@ -81,7 +97,37 @@ app.delete('/blog/soccer/:id/', async function(req, res) {
     // so the data got deleted i guess
 });
 
+
+// ==========================
+// =======Comments===========
+// ==========================
+// so how does url looks like?
+// we want comments on the blog (soccer currently)
+// /blog/soccer/:id/comment/new to create comment
+app.get('/blog/soccer/:id/comment/new', async function(req, res) {
+    let soccerIdPostCommentOn = req.params.id;
+    let foundSoccer = await Soccer.findById(soccerIdPostCommentOn);
+    res.render('comment/new', {foundSoccer:foundSoccer});
+});
+// create comment
+app.post('/blog/soccer/:id/comment', async function(req, res) {
+    let commentData = req.body.comment;
+    let commentCreate = await Comment.create(commentData);
+    console.log("comment created successfully");
+    console.log(commentCreate);
+    let foundSoccer = await Soccer.findById(req.params.id);
+    foundSoccer.comments.push(commentCreate);
+    console.log("pushed");
+    await foundSoccer.save();
+    // then save it on the soccer
+    res.redirect('/blog/soccer/' + foundSoccer);
+});
+
 // Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {
     console.log(`BLOG BOARD APP RUNNING: ${PORT_NUMBER}`);
 });
+
+
+//5ef9cfc69e23d502fafbe8d2 yeah
+// it worked!
