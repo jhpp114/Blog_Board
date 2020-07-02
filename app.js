@@ -45,7 +45,11 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
+// ========== Global Middleware ===========
+app.use( (req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 // ================
 // ===ROUTE========
 // ================
@@ -73,7 +77,7 @@ app.get('/blog/soccer/new', function(req, res) {
 });
 
 // post the data sended from the form create
-app.post('/blog/soccer', async function(req, res) {
+app.post('/blog/soccer', isLoggedIn, async function(req, res) {
     let newPostData = req.body.soccer;
     await Soccer.create(newPostData);
     // await Soccer.save();
@@ -92,12 +96,12 @@ app.get('/blog/soccer/:id', function(req, res) {
     });
 });
 // render edit form to user base on the data found
-app.get('/blog/soccer/:id/edit', async function(req, res) {
+app.get('/blog/soccer/:id/edit', isLoggedIn ,async function(req, res) {
     let editData = await Soccer.findById(req.params.id);
     res.render('soccer/edit', {editData: editData});
 });
 // submit editted data and save it into database
-app.put('/blog/soccer/:id', async function(req, res) {
+app.put('/blog/soccer/:id', isLoggedIn ,async function(req, res) {
     let editSubmittedData = req.body.soccer;
     await Soccer.findByIdAndUpdate(req.params.id, editSubmittedData);
     res.redirect('/blog/soccer/' + req.params.id);
@@ -117,13 +121,13 @@ app.delete('/blog/soccer/:id/', async function(req, res) {
 // so how does url looks like?
 // we want comments on the blog (soccer currently)
 // /blog/soccer/:id/comment/new to create comment
-app.get('/blog/soccer/:id/comment/new', async function(req, res) {
+app.get('/blog/soccer/:id/comment/new', isLoggedIn, async function(req, res) {
     let soccerIdPostCommentOn = req.params.id;
     let foundSoccer = await Soccer.findById(soccerIdPostCommentOn);
     res.render('comment/new', {foundSoccer:foundSoccer});
 });
 // create comment
-app.post('/blog/soccer/:id/comment', async function(req, res) {
+app.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
     let commentData = req.body.comment;
     let commentCreate = await Comment.create(commentData);
     console.log("comment created successfully");
@@ -162,13 +166,27 @@ app.get('/login', function(req, res) {
 // check if user is authenticate or not
 app.post('/login', passport.authenticate("local", {
     successRedirect: '/blogs'
-,   failureRedirect: "/"
+,   failureRedirect: "/login"
 }));
+// logout
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/blogs');
+});
 
+// ==========================
+// ======Login Middleware====
+// ==========================
+function isLoggedIn(req, res, next) {
+    if (!req.user) {
+        console.log("user is not logged in");
+        res.redirect('/login');
+    } else {
+        next();
+    }
+}
 
 // Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {
     console.log(`BLOG BOARD APP RUNNING: ${PORT_NUMBER}`);
 });
-// i found stupid mistake.....
-// i wrote use.... instead of get.. how stupid...
