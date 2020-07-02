@@ -145,8 +145,6 @@ app.get('/register', (req, res) => {
 });
 // save user into database
 app.post('/register', async function(req, res) {
-    console.log(req.body.username);
-    console.log(req.body.password);
     let new_user = new User({username: req.body.username});
     try {
         await User.register(new_user, req.body.password);
@@ -156,11 +154,17 @@ app.post('/register', async function(req, res) {
         console.log("Oops error on registering user");
         console.log(error)
     }
-    // ok..? sounds like it worked?
-    // all these random hash is password
-    // salt is like added random word to create hash more complicated
-    // so it becomes safer
 });
+// login page
+app.get('/login', function(req, res) {
+    res.render('user/login');
+});
+// check if user is authenticate or not
+app.post('/login', passport.authenticate("local", {
+    successRedirect: '/blogs'
+,   failureRedirect: "/"
+}));
+
 
 // Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {
