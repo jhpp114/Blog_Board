@@ -7,13 +7,20 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const PORT_NUMBER = 3000;
 const app = express();
+// =================================
+// ========Routes Setup=============
+// =================================
+const soccerRoute = require('./routes/soccer');
+const commentRoute = require('./routes/comment');
+const globalRoute = require('./routes/global');
+
+// ==========DataSeed===============
 // const seedDb = require('./seed');
 // // const seed = require('seed')
-
 // seedDb();
-// ==================
-// ==Require Models==
-// ==================
+// =================================
+// =========Require Models==========
+// =================================
 const Soccer = require('./models/soccer');
 const Comment = require('./models/comment');
 const User = require('./models/user');
@@ -50,130 +57,13 @@ app.use( (req, res, next) => {
     res.locals.user = req.user;
     next();
 });
-// ================
-// ===ROUTE========
-// ================
-// welcome page
-app.get('/', function(req, res) {
-    res.render('welcome');
-});
 
-app.get('/blogs', function(req, res) {
-    res.render('blogs');
-});
-
-// ===============
-// ===Soccer======
-// ===============
-// display all soccer data
-app.get('/blog/soccer', async function(req, res) {
-    let dummyDataSoccer = await Soccer.find({});
-    res.render('soccer/soccer', {dummySoccerTeams: dummyDataSoccer});
-});
-
-// display create soccer blog form
-app.get('/blog/soccer/new', function(req, res) {
-    res.render('soccer/new');
-});
-
-// post the data sended from the form create
-app.post('/blog/soccer', isLoggedIn, async function(req, res) {
-    let newPostData = req.body.soccer;
-    await Soccer.create(newPostData);
-    // await Soccer.save();
-    // dummyDataSoccer.push(newPostData);
-    res.redirect('/blog/soccer');
-});
-// get detail page and render it base on the pass id.
-app.get('/blog/soccer/:id', function(req, res) {
-    Soccer.findById(req.params.id).populate("comments").exec(function(error, foundData) {
-        if (error) {
-            console.log("Oops, fail to retrive data for detail page");
-            console.log(error);
-        } else {
-            res.render('soccer/detail', {foundData: foundData});
-        }
-    });
-});
-// render edit form to user base on the data found
-app.get('/blog/soccer/:id/edit', isLoggedIn ,async function(req, res) {
-    let editData = await Soccer.findById(req.params.id);
-    res.render('soccer/edit', {editData: editData});
-});
-// submit editted data and save it into database
-app.put('/blog/soccer/:id', isLoggedIn ,async function(req, res) {
-    let editSubmittedData = req.body.soccer;
-    await Soccer.findByIdAndUpdate(req.params.id, editSubmittedData);
-    res.redirect('/blog/soccer/' + req.params.id);
-});
-// delete the data
-app.delete('/blog/soccer/:id/', async function(req, res) {
-    let deleteItemId = req.params.id;
-    await Soccer.findByIdAndRemove(deleteItemId);
-    res.redirect('/blog/soccer/');
-    // so the data got deleted i guess
-});
-
-
-// ==========================
-// =======Comments===========
-// ==========================
-// so how does url looks like?
-// we want comments on the blog (soccer currently)
-// /blog/soccer/:id/comment/new to create comment
-app.get('/blog/soccer/:id/comment/new', isLoggedIn, async function(req, res) {
-    let soccerIdPostCommentOn = req.params.id;
-    let foundSoccer = await Soccer.findById(soccerIdPostCommentOn);
-    res.render('comment/new', {foundSoccer:foundSoccer});
-});
-// create comment
-app.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
-    let commentData = req.body.comment;
-    let commentCreate = await Comment.create(commentData);
-    console.log("comment created successfully");
-    console.log(commentCreate);
-    let foundSoccer = await Soccer.findById(req.params.id);
-    foundSoccer.comments.push(commentCreate);
-    console.log("pushed");
-    await foundSoccer.save();
-    // then save it on the soccer
-    res.redirect('/blog/soccer/' + req.params.id);
-});
-
-// =========================
-// ===User Authentication===
-// =========================
-// render register form
-app.get('/register', (req, res) => {
-    res.render('user/register');
-});
-// save user into database
-app.post('/register', async function(req, res) {
-    let new_user = new User({username: req.body.username});
-    try {
-        await User.register(new_user, req.body.password);
-        await passport.authenticate("local");
-        res.redirect('/blogs');
-    } catch (error) {
-        console.log("Oops error on registering user");
-        console.log(error)
-    }
-});
-// login page
-app.get('/login', function(req, res) {
-    res.render('user/login');
-});
-// check if user is authenticate or not
-app.post('/login', passport.authenticate("local", {
-    successRedirect: '/blogs'
-,   failureRedirect: "/login"
-}));
-// logout
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/blogs');
-});
-
+// ==================================
+// Retrieve Routers from Router files
+// ==================================
+app.use(soccerRoute);
+app.use(commentRoute);
+app.use(globalRoute);
 // ==========================
 // ======Login Middleware====
 // ==========================

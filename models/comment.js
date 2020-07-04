@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 let commentSchema = new mongoose.Schema({
     author: String
 ,   text: String
+    // because comment will have only one user so no need array
+,   author: {
+        id: m
+    }
 ,   createdDate: {
         type: Date
     ,   default: Date.now
