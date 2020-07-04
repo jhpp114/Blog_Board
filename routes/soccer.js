@@ -19,8 +19,22 @@ router.get('/blog/soccer/new', function(req, res) {
 
 // post the data sended from the form create
 router.post('/blog/soccer', isLoggedIn, async function(req, res) {
-    let newPostData = req.body.soccer;
-    await Soccer.create(newPostData);
+    // let newPostData = req.body.soccer;
+    let teamname = req.body.soccer.teamname;
+    let image = req.body.soccer.image;
+    let description = req.body.soccer.description;
+    let author = {
+        id: req.user._id
+    ,   username: req.user.username
+    };
+    let createdSoccerData = {
+        teamname: teamname
+    ,   image: image
+    ,   description: description
+    ,   author: author
+    }
+    await Soccer.create(createdSoccerData);
+    console.log("Data created Successfully");
     // await Soccer.save();
     // dummyDataSoccer.push(newPostData);
     res.redirect('/blog/soccer');
@@ -69,5 +83,7 @@ function isLoggedIn(req, res, next) {
         next();
     }
 }
+
+// function isAuthorize
 
 module.exports = router;
