@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
 // create schema
+// connect user to comment so i can know which user wrote comment
 let commentSchema = new mongoose.Schema({
     author: String
 ,   text: String
-    // because comment will have only one user so no need array
 ,   author: {
-        id: m
+        id: {
+            type: mongoose.Schema.Types.ObjectId
+        ,   ref: "User"
+        }
+    ,   username: String
     }
 ,   createdDate: {
         type: Date

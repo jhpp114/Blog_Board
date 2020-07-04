@@ -34,7 +34,7 @@
                <% foundData.comments.forEach(function(foundComment) { %>
                     <p> 
                         <strong>
-                            <%=foundComment.author %>
+                            <%=foundComment.author.username %>
                         </strong>: <%=foundComment.text %> 
                         <span class="createdDate">
                             <%=foundComment.createdDate.toDateString()%>

@@ -2,6 +2,7 @@
 const express = require('express');
 const Soccer = require('../models/soccer');
 const Comment = require('../models/comment');
+const comment = require('../models/comment');
 let router = express.Router();
 
 // ==========================
@@ -19,6 +20,12 @@ router.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
     console.log("comment created successfully");
     console.log(commentCreate);
     let foundSoccer = await Soccer.findById(req.params.id);
+    // before push comment inside Soccer
+    // add user into comment
+    commentCreate.author.id = req.user._id;
+    commentCreate.author.username = req.user.username;
+    await commentCreate.save();
+    console.log("Comment Saved");
     foundSoccer.comments.push(commentCreate);
     console.log("pushed");
     await foundSoccer.save();

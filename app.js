@@ -15,6 +15,7 @@ const commentRoute = require('./routes/comment');
 const globalRoute = require('./routes/global');
 
 // ==========DataSeed===============
+// clean up before test
 // const seedDb = require('./seed');
 // // const seed = require('seed')
 // seedDb();
