@@ -11,13 +11,13 @@
             <!-- I will just use bootstrap for now
                     and change it into my own css -->
                     <!-- so i need id of the data that i am changing. -->
-                    <a class="btn btn-info btn-sm" href="/blog/soccer/<%=foundData._id%>/edit">Edit</a>
-                    <!-- Delete -->
-                    <!-- where should we go... after delete. 
-                            Obvisouly I need id of the item to delete -->
-                    <form class="deleteForm" action="/blog/soccer/<%=foundData._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+                    <% if (user && foundData.author.id.equals(user._id)) { %>
+                        <a class="btn btn-info btn-sm" href="/blog/soccer/<%=foundData._id%>/edit">Edit</a>
+                        <form class="deleteForm" action="/blog/soccer/<%=foundData._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    <%} %>
+                    
             <div class="details_info_background">
                 <h3 class="details_info_title"><%=foundData.teamname%></h3> 
                 <hr class="details_info_sepeate_line">
@@ -40,7 +40,12 @@
                             <%=foundComment.createdDate.toDateString()%>
                         </span>
                     </p>
-
+                    <a class="btn btn-info btn-sm" href="/blog/soccer/<%=foundData._id%>/comment/<%=foundComment._id%>">
+                        Edit Comment
+                    </a>
+                    <form class="deleteForm" action="/blog/soccer/<%=foundData._id%>/comment/<%=foundComment._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete Comment</button>
+                    </form>
                <% }); %>
             </div>
         </div>

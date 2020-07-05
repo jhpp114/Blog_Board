@@ -2,7 +2,7 @@
 const express = require('express');
 const Soccer = require('../models/soccer');
 const Comment = require('../models/comment');
-const comment = require('../models/comment');
+
 let router = express.Router();
 
 // ==========================
@@ -15,11 +15,11 @@ router.get('/blog/soccer/:id/comment/new', isLoggedIn, async function(req, res) 
 });
 // create comment
 router.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
+    let foundSoccer = await Soccer.findById(req.params.id);
     let commentData = req.body.comment;
     let commentCreate = await Comment.create(commentData);
     console.log("comment created successfully");
     console.log(commentCreate);
-    let foundSoccer = await Soccer.findById(req.params.id);
     // before push comment inside Soccer
     // add user into comment
     commentCreate.author.id = req.user._id;
@@ -31,6 +31,48 @@ router.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
     await foundSoccer.save();
     // then save it on the soccer
     res.redirect('/blog/soccer/' + req.params.id);
+});
+
+// render edit page
+router.get('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
+    try {
+        let foundComment = await Comment.findById(req.params.comment_id);
+        let soccerId = req.params.id;
+        res.render('comment/edit', {soccerId:soccerId, foundComment: foundComment});
+    } catch (error) {
+        console.log("Oops, fail to retrieve comment from database");
+        console.log(error);
+        res.redirect('back');
+    }
+});
+// put method to store edited data into database
+router.put('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
+    try {
+        let updateData = req.body.comment;
+        let updateCommentId = req.params.comment_id;
+        let edit_target_data = await Comment.findByIdAndUpdate(updateCommentId, updateData);
+        console.log(edit_target_data);
+        res.redirect('/blog/soccer/' + req.params.id);
+    } catch (error) {
+        console.log("Oops error on saving updated comment data");
+        console.log(error);
+        res.redirect('back');
+    }
+
+});
+// delete the comment
+router.delete('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
+    // just delete comment without touching soccer should be ok.
+    try {
+        await Comment.findByIdAndDelete(req.params.comment_id);
+        console.log("Delete Comment Success");
+        res.redirect('/blog/soccer/' + req.params.id);
+    } catch (error) {
+        console.log("Oops Error on deleting Comment");
+        console.log(error);
+        res.redirect('back');
+    }
+    
 });
 
 // ==========================

@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 // create schema
 // connect user to comment so i can know which user wrote comment
 let commentSchema = new mongoose.Schema({
-    author: String
-,   text: String
+    text: String
 ,   author: {
         id: {
             type: mongoose.Schema.Types.ObjectId
