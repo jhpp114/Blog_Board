@@ -1,6 +1,7 @@
 // Routes for Soccer
 const express = require('express');
 const Soccer = require('../models/soccer');
+const middlewareObj = require('../middleware/middleware');
 let router = express.Router();
 
 // ===============
@@ -13,12 +14,12 @@ router.get('/blog/soccer', async function(req, res) {
 });
 
 // display create soccer blog form
-router.get('/blog/soccer/new', isLoggedIn, function(req, res) {
+router.get('/blog/soccer/new', middlewareObj.isLoggedIn, function(req, res) {
     res.render('soccer/new');
 });
 
 // post the data sended from the form create
-router.post('/blog/soccer', isLoggedIn, async function(req, res) {
+router.post('/blog/soccer', middlewareObj.isLoggedIn, async function(req, res) {
     // let newPostData = req.body.soccer;
     let teamname = req.body.soccer.teamname;
     let image = req.body.soccer.image;
@@ -51,19 +52,19 @@ router.get('/blog/soccer/:id', function(req, res) {
     });
 });
 // render edit form to user base on the data found
-router.get('/blog/soccer/:id/edit', isAuthorize ,async function(req, res) {
+router.get('/blog/soccer/:id/edit', middlewareObj.isSoccerAuthorize ,async function(req, res) {
     let editData = await Soccer.findById(req.params.id);
     res.render('soccer/edit', {editData: editData});
 });
 // submit editted data and save it into database
-router.put('/blog/soccer/:id', isAuthorize ,async function(req, res) {
+router.put('/blog/soccer/:id', middlewareObj.isSoccerAuthorize ,async function(req, res) {
     let editSubmittedData = req.body.soccer;
     await Soccer.findByIdAndUpdate(req.params.id, editSubmittedData);
     res.redirect('/blog/soccer/' + req.params.id);
 });
 // delete the data
 // Todo: Add middleware 
-router.delete('/blog/soccer/:id/', isAuthorize, async function(req, res) {
+router.delete('/blog/soccer/:id/', middlewareObj.isSoccerAuthorize, async function(req, res) {
     let deleteItemId = req.params.id;
     await Soccer.findByIdAndRemove(deleteItemId);
     res.redirect('/blog/soccer/');
@@ -75,29 +76,15 @@ router.delete('/blog/soccer/:id/', isAuthorize, async function(req, res) {
 // ======Login Middleware====
 // ==========================
 // Todo: Organize the middle ware after routes
-function isLoggedIn(req, res, next) {
-    if (!req.user) {
-        console.log("user is not logged in");
-        res.redirect('/login');
-    } else {
-        next();
-    }
-}
+// function isLoggedIn(req, res, next) {
+//     if (!req.user) {
+//         console.log("user is not logged in");
+//         res.redirect('/login');
+//     } else {
+//         next();
+//     }
+// }
 
-async function isAuthorize(req, res, next) {
-    if (!req.user) {
-        console.log("User is not logged in");
-        res.redirect('/login');
-    } else {
-        let foundSoccer = await Soccer.findById(req.params.id);
-        if (foundSoccer.author.id.equals(req.user._id)) {
-            console.log("You are authorized");
-            next();
-        } else {
-            console.log("Login but not authorized");
-            res.redirect('back');
-        }
-    }
-}
+
 
 module.exports = router;

@@ -2,19 +2,19 @@
 const express = require('express');
 const Soccer = require('../models/soccer');
 const Comment = require('../models/comment');
-
+const middlewareObj = require('../middleware/middleware');
 let router = express.Router();
 
 // ==========================
 // =======Comments===========
 // ==========================
-router.get('/blog/soccer/:id/comment/new', isLoggedIn, async function(req, res) {
+router.get('/blog/soccer/:id/comment/new', middlewareObj.isLoggedIn, async function(req, res) {
     let soccerIdPostCommentOn = req.params.id;
     let foundSoccer = await Soccer.findById(soccerIdPostCommentOn);
     res.render('comment/new', {foundSoccer:foundSoccer});
 });
 // create comment
-router.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
+router.post('/blog/soccer/:id/comment', middlewareObj.isLoggedIn ,async function(req, res) {
     let foundSoccer = await Soccer.findById(req.params.id);
     let commentData = req.body.comment;
     let commentCreate = await Comment.create(commentData);
@@ -34,7 +34,7 @@ router.post('/blog/soccer/:id/comment', isLoggedIn ,async function(req, res) {
 });
 
 // render edit page
-router.get('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
+router.get('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     try {
         let foundComment = await Comment.findById(req.params.comment_id);
         let soccerId = req.params.id;
@@ -46,7 +46,7 @@ router.get('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
     }
 });
 // put method to store edited data into database
-router.put('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
+router.put('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     try {
         let updateData = req.body.comment;
         let updateCommentId = req.params.comment_id;
@@ -61,7 +61,7 @@ router.put('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
 
 });
 // delete the comment
-router.delete('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
+router.delete('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     // just delete comment without touching soccer should be ok.
     try {
         await Comment.findByIdAndDelete(req.params.comment_id);
@@ -74,18 +74,5 @@ router.delete('/blog/soccer/:id/comment/:comment_id', async function(req, res) {
     }
     
 });
-
-// ==========================
-// ======Login Middleware====
-// ==========================
-// Todo: Organize the middle ware after routes
-function isLoggedIn(req, res, next) {
-    if (!req.user) {
-        console.log("user is not logged in");
-        res.redirect('/login');
-    } else {
-        next();
-    }
-}
 
 module.exports = router;
