@@ -71,20 +71,4 @@ router.delete('/blog/soccer/:id/', middlewareObj.isSoccerAuthorize, async functi
     // so the data got deleted i guess
 });
 
-
-// ==========================
-// ======Login Middleware====
-// ==========================
-// Todo: Organize the middle ware after routes
-// function isLoggedIn(req, res, next) {
-//     if (!req.user) {
-//         console.log("user is not logged in");
-//         res.redirect('/login');
-//     } else {
-//         next();
-//     }
-// }
-
-
-
 module.exports = router;

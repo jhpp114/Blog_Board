@@ -3,6 +3,8 @@
 // ==========================
 // ======Login Middleware====
 // ==========================
+const Soccer = require('../models/soccer');
+const Comment = require('../models/comment');
 let middlewares = {}; 
 
 middlewares.isLoggedIn = function (req, res, next) {
