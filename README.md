@@ -21,12 +21,19 @@
 |   └── comment.js
 |   └── soccer.js
 |   └── user.js
+└── middleware
+    ├── middleware.js
 ├── public
 │   └── stylesheet
 │       └── app.css
+├── routes
+│   ├── comment.js
+│   ├── global.js
+│   └── soccer.js
 └── views
     ├── blogs.ejs
     ├── comment
+    │   ├── edit.ejs
     │   └── new.ejs
     ├── partials
     │   ├── footer.ejs
@@ -37,6 +44,7 @@
     │   ├── new.ejs
     │   └── soccer.ejs
     ├── user
-        ├── login.ejs
-        └── register.ejs
+    │   ├── login.ejs
+    │   └── register.ejs
+    └── welcome.ejs
 ```bash
