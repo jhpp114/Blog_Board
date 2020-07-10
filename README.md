@@ -9,6 +9,7 @@
 - npm install passport-local
 - npm install passport-local-mongoose
 - npm install express-session
+- npm install method-override
 
 # Current Tree
 ```bash
