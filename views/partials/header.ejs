@@ -19,15 +19,17 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/">About</a></li>
-            
-            <% if (!user) { %>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
-            <% } else { %>
-                <li>Welcome <%=user.username%></li>
-                <li><a href="/logout">Logout</a></li>
-            <%} %>
+        
         </ul>
+        <div class="user_nav">
+            <% if (!user) { %>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            <% } else { %>
+                Welcome <%=user.username%>
+                <a href="/logout">Logout</a>
+            <%} %>
+        </div>
     </nav>
     
     <!-- Todo: Change bootstrap menu to my own menu -->

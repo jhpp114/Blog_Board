@@ -14,24 +14,24 @@
     min-height: 3em;
     align-items: center;
     color: rgb(73, 73, 73);
+    flex-wrap: wrap;
 }
 
 .navigation_bar h3 {
     text-transform: uppercase;
-    display:inline;
+    flex: 2;
     letter-spacing: 0.25em;
 }
 
 .navigation_bar ul {
     display: flex;
-    width: 70%;
-    font-size: 1.5rem;
+    flex: 1;
+    font-size: 1.0rem;
     justify-content: space-around;
 }
 
 .navigation_bar ul li {
     list-style: none;
-    padding-top: 1em;
 }
 .navigation_bar ul li a {
     text-decoration: none;
@@ -41,6 +41,17 @@
     font-size: 1.0rem;
 }
 
+.navigation_bar > .user_nav {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.0rem;
+    flex: 1;
+}
+
+.navigation_bar > .user_nav a {
+    margin: 0rem 1rem;
+    text-decoration: none;
+}
 /* ===================================================*/
 /* ==================welcome Page=====================*/
 /* ===================================================*/
