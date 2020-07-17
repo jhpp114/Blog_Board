@@ -9,6 +9,7 @@
 - npm install passport-local
 - npm install passport-local-mongoose
 - npm install express-session
+- npm install method-override
 
 # Current Tree
 ```bash
@@ -21,12 +22,19 @@
 |   └── comment.js
 |   └── soccer.js
 |   └── user.js
+└── middleware
+    ├── middleware.js
 ├── public
 │   └── stylesheet
 │       └── app.css
+├── routes
+│   ├── comment.js
+│   ├── global.js
+│   └── soccer.js
 └── views
     ├── blogs.ejs
     ├── comment
+    │   ├── edit.ejs
     │   └── new.ejs
     ├── partials
     │   ├── footer.ejs
@@ -37,6 +45,7 @@
     │   ├── new.ejs
     │   └── soccer.ejs
     ├── user
-        ├── login.ejs
-        └── register.ejs
+    │   ├── login.ejs
+    │   └── register.ejs
+    └── welcome.ejs
 ```bash
