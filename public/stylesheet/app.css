@@ -116,6 +116,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
 .welcome_introduction > .intro_content > .lists_webframework > .lists_tags span {
     margin: 0.5rem;
     border: 1px solid var(--navigation_color);
@@ -124,6 +125,23 @@
     box-shadow: 2px 2px 2px 2px black;
 }
 
+.main_section_intro {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main_section_intro > .slide_show img {
+    background-color: red;
+    width: 40%;
+    height: 40rem;
+    filter: drop-shadow(1px 8px 5px black);
+    margin: 0rem 1rem;
+}
+
+.main_section_intro > .slide_show span i {
+    font-size: 3rem;
+    cursor: pointer;
+}
 
 /* ===================================================*/
 /* ===================/blog Page======================*/
