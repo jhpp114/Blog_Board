@@ -1,22 +1,29 @@
 <%- include('partials/header') %>
 
-<div class="welcomepage">
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">H E L L O</h1>
-            <p class="lead">This is my first web project</p>
-            <p class="lead">A Simple blog</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a class="btn btn-info btn-lg" href="/blogs" role="button">Explore More</a>
-            </p>
+<section>
+    <header class="welcome_introduction">
+        <div class="right_image">
+            <img src="/images/Introduction_img.jpg" alt="blog image">
         </div>
-
-        <div class="welcome_contents">
-            <hr>
-            hello world
+        <div class="intro_content">
+            <h3>Welcome to my first express webframe work</h3>
+            <p>I made this blog to experience basics of express webframework
+            and basic idea of RESTful</p>
+            <div class="lists_webframework">
+                <h4>Following framework had been used</h4>    
+                <div class="lists_tags">
+                    <span>Express</span>
+                    <span>Ejs</span>
+                    <span>Mongoose</span>
+                    <span>method-override</span>
+                    <span>Passport</span>
+                    <span>passport-local</span>
+                    <span>passport-local-mongoose</span>
+                    <span>express-session</span>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </header>
+</section>
 
 <%- include('partials/footer') %>
