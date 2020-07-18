@@ -25,6 +25,8 @@
 └── middleware
     ├── middleware.js
 ├── public
+|   |   images
+│   │   └── Introduction_img.jpg
 │   └── stylesheet
 │       └── app.css
 ├── routes
