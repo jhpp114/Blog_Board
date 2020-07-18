@@ -37,9 +37,15 @@ const right_slide_btn = document.querySelector('.fa-arrow-right');
 let counter = 0;
 function right_slide() {
     let slideImgData = getSlideData();
+    if (!(counter >= slideImgData.length))
     slide_area.children[1].src = slideImgData[counter].img;
     counter++;
 }
+
+function left_slide() {
+    
+}
+
 console.log(slide_area.children[1].src);
 
 right_slide_btn.addEventListener("click", right_slide);
