@@ -131,7 +131,6 @@
 }
 
 .main_section_intro > .slide_show img {
-    background-color: red;
     width: 40%;
     height: 40rem;
     filter: drop-shadow(1px 8px 5px black);
