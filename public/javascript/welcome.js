@@ -3,7 +3,7 @@ function getSlideData() {
     const slideData = [ 
         {
             img: "../images/Travel_main.jpg"
-        ,   description: "The Travel Blog"
+        ,   description: "The Travel Blog" 
         }
         ,
         {
@@ -65,4 +65,3 @@ function left_slide() {
 
 right_slide_btn.addEventListener("click", right_slide);
 left_slide_btn.addEventListener("click", left_slide);
-console.log(slide_area.children);
