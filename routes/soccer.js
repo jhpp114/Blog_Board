@@ -38,6 +38,7 @@ router.post('/blog/soccer', middlewareObj.isLoggedIn, async function(req, res) {
     console.log("Data created Successfully");
     // await Soccer.save();
     // dummyDataSoccer.push(newPostData);
+    req.flash("success", "Great! successfully Posted!");
     res.redirect('/blog/soccer');
 });
 // get detail page and render it base on the pass id.
@@ -60,6 +61,7 @@ router.get('/blog/soccer/:id/edit', middlewareObj.isSoccerAuthorize ,async funct
 router.put('/blog/soccer/:id', middlewareObj.isSoccerAuthorize ,async function(req, res) {
     let editSubmittedData = req.body.soccer;
     await Soccer.findByIdAndUpdate(req.params.id, editSubmittedData);
+    req.flash('success', "Successfully Editted the Blog post");
     res.redirect('/blog/soccer/' + req.params.id);
 });
 // delete the data
@@ -67,8 +69,8 @@ router.put('/blog/soccer/:id', middlewareObj.isSoccerAuthorize ,async function(r
 router.delete('/blog/soccer/:id/', middlewareObj.isSoccerAuthorize, async function(req, res) {
     let deleteItemId = req.params.id;
     await Soccer.findByIdAndRemove(deleteItemId);
+    req.flash("success", "Successfully deleted the Blog post");
     res.redirect('/blog/soccer/');
-    // so the data got deleted i guess
 });
 
 module.exports = router;

@@ -51,11 +51,13 @@ router.put('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,as
         let updateData = req.body.comment;
         let updateCommentId = req.params.comment_id;
         let edit_target_data = await Comment.findByIdAndUpdate(updateCommentId, updateData);
-        console.log(edit_target_data);
+        // console.log(edit_target_data);
+        req.flash("success", "Successfully added comment");
         res.redirect('/blog/soccer/' + req.params.id);
     } catch (error) {
         console.log("Oops error on saving updated comment data");
         console.log(error);
+        req.flash("error", "Oops error on edit the comment");
         res.redirect('back');
     }
 
@@ -66,10 +68,12 @@ router.delete('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize 
     try {
         await Comment.findByIdAndDelete(req.params.comment_id);
         console.log("Delete Comment Success");
+        req.flash("success", "Successfully Deleted comment");
         res.redirect('/blog/soccer/' + req.params.id);
     } catch (error) {
         console.log("Oops Error on deleting Comment");
         console.log(error);
+        req.flash("error", "Oops error on Deleting the comment");
         res.redirect('back');
     }
     

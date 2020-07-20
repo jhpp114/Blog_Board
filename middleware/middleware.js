@@ -36,14 +36,17 @@ middlewares.isSoccerAuthorize = async function (req, res, next) {
 
 middlewares.isAuthorize = async function(req, res, next) {
     if (!req.user) {
+        req.flash("error", "You are not currently logged in. Please Login");
         console.log("You are not Login yet");
         res.redirect('/login');   
     } else {
         let foundComment = await Comment.findById(req.params.comment_id);
         if (foundComment.author.id.equals(req.user._id)) {
+            req.flash("success", "Authorized");
             console.log("Yes you are authoized!");
             next();
         } else {
+            req.flash("error", "You are not Authorized");
             console.log("You are not authoized");
             res.redirect('back');
         }

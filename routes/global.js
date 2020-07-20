@@ -28,8 +28,10 @@ router.post('/register', async function(req, res) {
     try {
         await User.register(new_user, req.body.password);
         await passport.authenticate("local");
+        req.flash("success", `Welcome ${new_user.username}`);
         res.redirect('/blogs');
     } catch (error) {
+        req.flash("error", `Oops ${error.message}`);
         console.log("Oops error on registering user");
         console.log(error);
         res.redirect('/register');
@@ -47,6 +49,7 @@ router.post('/login', passport.authenticate("local", {
 // logout
 router.get('/logout', function(req, res) {
     req.logout();
+    req.flash('success', "See you later!");
     res.redirect('/blogs');
 });
 

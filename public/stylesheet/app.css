@@ -76,7 +76,7 @@
 
 .welcome_introduction > .right_image img {
     width: 90%;
-    height: 30rem;
+    height: 90%;
     margin: 2rem 2rem;
     filter: drop-shadow(2px 7px 5px black);
 }
