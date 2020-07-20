@@ -13,6 +13,11 @@ const app = express();
 const soccerRoute = require('./routes/soccer');
 const commentRoute = require('./routes/comment');
 const globalRoute = require('./routes/global');
+// =================================
+// =======connect-flash=============
+// =================================
+const flash = require('connect-flash');
+
 
 // ==========DataSeed===============
 // clean up before test
@@ -41,6 +46,8 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use(flash());
+
 app.use(require('express-session') ({
     secret: "secret"
 ,   resave: false
@@ -56,6 +63,8 @@ passport.deserializeUser(User.deserializeUser());
 // ========== Global Middleware ===========
 app.use( (req, res, next) => {
     res.locals.user = req.user;
+    res.locals.error_message = req.flash("error");
+    res.locals.success_message = req.flash("success");
     next();
 });
 
@@ -65,17 +74,6 @@ app.use( (req, res, next) => {
 app.use(soccerRoute);
 app.use(commentRoute);
 app.use(globalRoute);
-// ==========================
-// ======Login Middleware====
-// ==========================
-function isLoggedIn(req, res, next) {
-    if (!req.user) {
-        console.log("user is not logged in");
-        res.redirect('/login');
-    } else {
-        next();
-    }
-}
 
 // Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {
