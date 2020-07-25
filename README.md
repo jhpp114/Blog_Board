@@ -23,6 +23,7 @@
 |   └── comment.js
 |   └── soccer.js
 |   └── user.js
+|   └── travel.js
 └── middleware
     ├── middleware.js
 ├── public
@@ -41,6 +42,7 @@
 │   ├── comment.js
 │   ├── global.js
 │   └── soccer.js
+|   └── travel.js
 └── views
     ├── blogs.ejs
     ├── comment
@@ -54,6 +56,9 @@
     │   ├── edit.ejs
     │   ├── new.ejs
     │   └── soccer.ejs
+    ├── travel
+    │   ├── new.ejs
+    │   └── travel.ejs
     ├── user
     │   ├── login.ejs
     │   └── register.ejs
