@@ -10,6 +10,7 @@
 - npm install passport-local-mongoose
 - npm install express-session
 - npm install method-override
+- npm install connect-flash
 
 # Current Tree
 ```bash
@@ -26,7 +27,14 @@
     ├── middleware.js
 ├── public
 |   |   images
-│   │   └── Introduction_img.jpg
+│   │   ├── Coffee_main.jpg
+│   │   ├── Introduction_img.jpg
+│   │   ├── Nature_main.jpg
+│   │   ├── Programming_main.jpg
+│   │   ├── Soccer_main.jpg
+│   │   └── Travel_main.jpg
+│   ├── javascript
+│   │   └── welcome.js
 │   └── stylesheet
 │       └── app.css
 ├── routes
