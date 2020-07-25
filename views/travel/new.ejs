@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <h1 class="create_title">Post Your New Travel</h1>
+    <form action="/blog/travel" method="POST">
+        <div class="row">
+            <div class="create_new">
+                <div class="form-group">
+                    <label>Place You Travel</label>
+                    <input class="form-control" type="text" name="travel[place]" placeholder="Type where you travel">
+                </div>
+                <div class="form-group">
+                    <label>Image url</label>
+                    <input class="form-control" type="text" name="travel[image]" placeholder="image url">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" name="travel[description]" cols="30" rows="10"></textarea>
+                </div>
+                <button class="btn btn-sm btn-primary btn-block">POST</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

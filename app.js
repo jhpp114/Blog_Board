@@ -13,6 +13,7 @@ const app = express();
 const soccerRoute = require('./routes/soccer');
 const commentRoute = require('./routes/comment');
 const globalRoute = require('./routes/global');
+const travelRoute = require('./routes/travel');
 // =================================
 // =======connect-flash=============
 // =================================
@@ -74,6 +75,7 @@ app.use( (req, res, next) => {
 app.use(soccerRoute);
 app.use(commentRoute);
 app.use(globalRoute);
+app.use(travelRoute);
 
 // Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {

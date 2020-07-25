@@ -29,7 +29,6 @@ function getSlideData() {
     return slideData;
 }
 
-
 const slide_area = document.querySelector('.slide_show');
 const left_slide_btn = document.querySelector('.fa-arrow-left');
 const right_slide_btn = document.querySelector('.fa-arrow-right');

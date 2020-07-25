@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <h1>Travel Blog &nbsp; 
+        <a href="/blog/travel/new">
+            <i class="fa fa-plus-circle"></i>
+        </a>
+    </h1>
+    <div class="row">
+        <% travelDatas.forEach(function(travelData) { %>
+            <div class="col-md-3">
+                <figure class="figure">
+                    <a href="/blog/travel/<%=travelData._id%>">
+                        <img class="figure-img img-fluid rounded"
+                        src="<%=travelData.image%>" 
+                        alt="travel image">
+                    </a>
+                    <figcaption class="figure-caption">
+                        <strong><%=travelData.placeName%></strong>
+                        <p>
+                            Created Date: <%=travelData.createDate.toDateString()%>
+                        </p>
+                        <p>
+                            Posted By: <%=travelData.author.username %>
+                        </p>
+                    </figcaption>
+                    <p class="travel_description"><%=travelData.description.substring(0,20)%></p>
+                    <a class="btn btn-info btn-sm" href="/blog/travel/<%=travelData._id%>">View Detail</a>
+                </figure>
+            </div>
+        <% }); %>
+    </div> 
+</div>
+
+<%- include('../partials/footer') %>
