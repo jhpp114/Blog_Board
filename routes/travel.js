@@ -42,7 +42,7 @@ router.post('/blog/travel', middleware.isLoggedIn, async function(req, res) {
 
 router.get('/blog/travel/:id', async function(req, res) {
     try {
-        await Travel.findById(req.params.id).populate("comment").exec(function(error, foundData) {
+        await Travel.findById(req.params.id).populate("comments").exec(function(error, foundData) {
             if (error) {
                 req.flash('error', 'Error on Display Detail Data');
             }

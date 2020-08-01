@@ -41,6 +41,19 @@ router.post('/blog/soccer/:id/comment', middlewareObj.isLoggedIn ,async function
     res.redirect('/blog/soccer/' + req.params.id);
 });
 
+router.post('/blog/travel/:id/comment', middlewareObj.isLoggedIn, async (req, res) => {
+    let targetTravelId = req.params.id;
+    let foundTravel = await Travel.findById(targetTravelId);
+    let commentData = req.body.comment;
+    let commentCreate = await Comment.create(commentData);
+    commentCreate.author.id = req.user._id;
+    commentCreate.author.username = req.user.username;
+    await commentCreate.save();
+    foundTravel.comments.push(commentCreate);
+    await foundTravel.save();
+    res.redirect('/blog/travel/' + targetTravelId);
+});
+
 // render edit page
 router.get('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     try {
