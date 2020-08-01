@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+<div class="container detail_Container">
+    <div class="row">
+        <div class="col-md-6 detail_Picture">
+            <img src="<%=foundData.image%>" alt="">
+        </div>
+        <!-- Item -->
+        <div class="col-md-6 detail_info">
+            <% if (user && foundData.author.id.equals(user._id)) { %>
+                <a class="btn btn-info btn-sm" href="/blog/travel<%=foundData._id%>/edit">Edit</a>
+                <form class="deleteForm" action="/blog/travel/<%=foundData._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            <% } %>
+
+            <div class="details_info_background">
+                <h3 class="details_info_title"><%=foundData.placeName%></h3>
+                <hr class="details_info_sepeate_line">
+                <p><%=foundData.createDate.toDateString()%></p>
+                <p class="details_info_description">
+                    <%=foundData.description %>
+                </p>
+            </div>
+
+            <!-- Comments -->
+            <div class="comments_page">
+                <a href="/blog/travel/<%=foundData._id%>/comment/new">Add new Comment</a>
+            </div>
+            <div class="display_comment">
+                <% foundData.comments.forEach( (foundComment) => { %>
+                    <p>
+                        <strong>
+                            <%=foundComment.author.username %>
+                        </strong>: <%=foundComment.text%>
+                        <span class="createdDate">
+                            <%=foundComment.createdDate.toDateString() %>
+                        </span>
+                    </p>
+                <% if (user && foundComment.author.id.equals(user.id)) { %>
+                        <a class="btn btn-info btn-sm" href="/blog/travel/<%=foundData._id%>/comment/<%=foundComment._id%>">
+                        Edit Comment
+                    </a>
+                    <form class="deleteForm" action="/blog/travel<%=foundData._id%>/comment/<%=foundComment._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete Comment</button>
+                    </form>
+                    <%} %>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../partials/footer') %>

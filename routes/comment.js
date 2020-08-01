@@ -2,6 +2,7 @@
 const express = require('express');
 const Soccer = require('../models/soccer');
 const Comment = require('../models/comment');
+const Travel = require('../models/travel');
 const middlewareObj = require('../middleware/middleware');
 let router = express.Router();
 
@@ -13,6 +14,13 @@ router.get('/blog/soccer/:id/comment/new', middlewareObj.isLoggedIn, async funct
     let foundSoccer = await Soccer.findById(soccerIdPostCommentOn);
     res.render('comment/new', {foundSoccer:foundSoccer});
 });
+
+router.get('/blog/travel/:id/comment/new', middlewareObj.isLoggedIn, async (req, res) => {
+    let travelPostCommentOn = req.params.id;
+    let foundTravel = await Travel.findById(travelPostCommentOn);
+    res.render('comment/travelNew', {foundTravel:foundTravel});
+});
+
 // create comment
 router.post('/blog/soccer/:id/comment', middlewareObj.isLoggedIn ,async function(req, res) {
     let foundSoccer = await Soccer.findById(req.params.id);
