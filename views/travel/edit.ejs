@@ -1,8 +1,25 @@
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 <div class="container">
-    <h2 class="create_new">Edit <%=foundData.placeName%></h2>
-    <form action="/blog/travel/<%=foundData._id%>"></form>
+    <h2 class="create_new">Edit <%=travelData.placeName%></h2>
+    <form action="/blog/travel/<%=travelData._id%>?_method=PUT" method="POST">
+        <div class="row">
+            <div class="create_new">
+                <div class="form-group">
+                    <label>Place Name</label>
+                    <input class="form-control" type="text" name="travel[placeName]" value="<%=travelData.placeName%>">
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input class="form-control" type="text" name="travel[image]" value="<%=travelData.image%>">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" name="travel[description]" cols="35" rows="10"><%=travelData.description%></textarea>
+                </div>
+                <button class="btn btn-primary btn-block">Edit</button>
+            </div>
+        </div>
+
+    </form>
 </div>
-
-
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>

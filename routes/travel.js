@@ -1,6 +1,7 @@
 const express = require('express');
 const Travel = require('../models/travel');
 const middleware = require('../middleware/middleware');
+const travel = require('../models/travel');
 const router = express.Router();
 
 // Display Travel Posts
@@ -40,6 +41,7 @@ router.post('/blog/travel', middleware.isLoggedIn, async function(req, res) {
     }
 });
 
+// display details
 router.get('/blog/travel/:id', async function(req, res) {
     try {
         await Travel.findById(req.params.id).populate("comments").exec(function(error, foundData) {
@@ -52,5 +54,41 @@ router.get('/blog/travel/:id', async function(req, res) {
         console.log(error);
     }
 });
+
+// edit page
+router.get('/blog/travel/:id/edit', async (req, res) => {
+    let travelData = req.params.id;
+    let editTravelData = await Travel.findById(travelData);
+    //console.log(editTravelData);
+    res.render("travel/edit", {travelData:editTravelData});
+});
+
+router.put('/blog/travel/:id', async (req, res) => {
+    let travel_id = req.params.id;
+    let new_travel_data = req.body.travel;
+    try {
+        await Travel.findByIdAndUpdate(travel_id, new_travel_data);
+        req.flash('success', "Succesfully edit the Blog Post");
+        res.redirect('/blog/travel/' + travel_id);
+    } catch (error) {
+        req.flash('error', "Fail to Edit the Data");
+        console.log(error);
+        res.redirect('back');
+    }
+});
+
+router.delete('/blog/travel/:id', async (req, res) => {
+    const target_id = req.params.id;
+    try {
+        await Travel.findByIdAndRemove(target_id);
+        req.flash("success", "Successfully Delete the Post");
+        res.redirect('/blog/travel/');
+    } catch (error) {
+        req.flash("error", "Fail to Delete the Post");
+        res.redirect("back");
+        console.log(error);
+    }
+});
+
 
 module.exports = router;
