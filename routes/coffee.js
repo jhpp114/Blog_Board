@@ -35,8 +35,6 @@ router.post('/blog/coffee', async (req, res) => {
     ,   description: coffee_description
     ,   author: coffee_autor
     };
-    
-    console.log(coffeeData_set);
     try {
         await Coffee.create(coffeeData_set);
         req.flash("success", "Great! successfully Posted!");
@@ -47,5 +45,24 @@ router.post('/blog/coffee', async (req, res) => {
         console.log(error);
     }
 });
+
+// Show Details
+router.get('/blog/coffee/:id', async (req, res) => {
+    try {
+        await Coffee.findById(req.params.id).populate("comments").exec( (error, foundData) => {
+            if (error) {
+                req.flash("error", "Error on Display detail Data");
+                console.log(error);
+            }
+            res.render('coffee/detail', {foundData:foundData});
+        });
+    } catch(error) {
+        req.flash("error", "Fail to display details on this post");
+        req.redirect('/blog/coffee');
+        console.log(error)
+    }
+});
+
+
 
 module.exports = router;
