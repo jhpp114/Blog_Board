@@ -14,12 +14,11 @@ const soccerRoute = require('./routes/soccer');
 const commentRoute = require('./routes/comment');
 const globalRoute = require('./routes/global');
 const travelRoute = require('./routes/travel');
+const coffeeRoute = require('./routes/coffee');
 // =================================
 // =======connect-flash=============
 // =================================
 const flash = require('connect-flash');
-
-
 // ==========DataSeed===============
 // clean up before test
 // const seedDb = require('./seed');
@@ -76,7 +75,7 @@ app.use(soccerRoute);
 app.use(commentRoute);
 app.use(globalRoute);
 app.use(travelRoute);
-
+app.use(coffeeRoute);
 // Listen to the port
 app.listen(PORT_NUMBER, function(req, res) {
     console.log(`BLOG BOARD APP RUNNING: ${PORT_NUMBER}`);

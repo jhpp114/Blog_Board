@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <h1>Coffee Blog &nbsp;
+        <a href="/blog/coffee/new">
+            <i class="fa fa-plus-circle"></i>
+        </a>
+    </h1>
+    <div class="row">
+        <% coffeeDatas.forEach((coffee_data) => { %>
+            <div class="col-md-3">
+                <figure class="figure">
+                    <a href="/blog/coffee/<%=coffee_data._id%>">
+                        <img class="figure-img img-fluid rounded" 
+                        src="<%=coffee_data.image%>" 
+                        alt="coffee image">
+                    </a>
+                    <figcaption class="figure-caption">
+                        <strong>
+                            <%=coffee_data.coffeename%>
+                        </strong>
+                        <p>
+                            Created Date: <%=coffee_data.createdDate.toDateString() %>
+                        </p>
+                        <p>
+                            Posted By: <%=coffee_data.author.username %>
+                        </p>
+                    </figcaption>
+                    <p class="soccer_description">
+                        <%=coffee_data.description.substring(0,20)%>...
+                    </p>
+                    <a class="btn btn-info btn-sm" href="/blog/coffee/<%=coffee_data._id%>">View Details</a>
+                </figure>
+            </div>
+       <% }); %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
