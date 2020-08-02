@@ -63,6 +63,17 @@ router.get('/blog/coffee/:id', async (req, res) => {
     }
 });
 
-
+// edit page
+router.get('/blog/coffee/:id/edit', async (req, res) => {
+    let coffeeData_id = req.params.id;
+    try {
+        let editCoffeeData = await Coffee.findById(coffeeData_id); 
+        res.render("coffee/edit", {editCoffeeData:editCoffeeData});   
+    } catch (error) {
+        console.log(error);
+        req.flash("error", "Error on displaying Edit Page");
+        res.redirect('back');
+    }
+});
 
 module.exports = router;

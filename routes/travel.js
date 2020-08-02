@@ -89,5 +89,4 @@ router.delete('/blog/travel/:id', async (req, res) => {
     }
 });
 
-
 module.exports = router;
