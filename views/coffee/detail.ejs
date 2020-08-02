@@ -18,6 +18,10 @@
                 <p><%=foundData.createdDate.toDateString()%></p>
                 <p class="details_info_description"><%=foundData.description%></p>
             </div>
+
+            <div class="comments_page">
+                <a href="/blog/coffee/<%=foundData._id%>/comment/new">Add New Comment</a>
+            </div>
             <div class="display_comment">
                 <% foundData.comments.forEach(function(foundComment) { %>
                     <p>

@@ -76,4 +76,19 @@ router.get('/blog/coffee/:id/edit', async (req, res) => {
     }
 });
 
+router.put('/blog/coffee/:id', async (req, res) => {
+    let edit_data_id = req.params.id;
+    let edit_data = req.body.coffee;
+    try {
+        await Coffee.findByIdAndUpdate(edit_data_id, edit_data);
+        req.flash('success', "Successfully Edit the Blog Post");
+        res.redirect('/blog/coffee/' + edit_data_id);
+    } catch (error) {
+        req.flash('error', "Error on Editing Data");
+        res.redirect("back");
+        console.log(error);
+    }
+    res.send("Hello Edit Coffee");
+});
+
 module.exports = router;

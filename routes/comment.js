@@ -9,16 +9,21 @@ let router = express.Router();
 // ==========================
 // =======Comments===========
 // ==========================
+// Soccer
 router.get('/blog/soccer/:id/comment/new', middlewareObj.isLoggedIn, async function(req, res) {
     let soccerIdPostCommentOn = req.params.id;
     let foundSoccer = await Soccer.findById(soccerIdPostCommentOn);
     res.render('comment/new', {foundSoccer:foundSoccer});
 });
-
+// Travel
 router.get('/blog/travel/:id/comment/new', middlewareObj.isLoggedIn, async (req, res) => {
     let travelPostCommentOn = req.params.id;
     let foundTravel = await Travel.findById(travelPostCommentOn);
     res.render('comment/travelNew', {foundTravel:foundTravel});
+});
+// Coffee
+router.get('/blog/coffee/:id/comment/new', middlewareObj.isLoggedIn, async (req, res) => {
+
 });
 
 // create comment
@@ -97,7 +102,6 @@ router.delete('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize 
         req.flash("error", "Oops error on Deleting the comment");
         res.redirect('back');
     }
-    
 });
 
 module.exports = router;
