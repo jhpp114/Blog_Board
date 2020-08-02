@@ -18,4 +18,9 @@ router.get('/blog/coffee/new', async (req, res) => {
     res.render("coffee/new");
 }); 
 
+// Post the data into database
+router.post('/blog/coffee', async (req, res) => {
+    
+});
+
 module.exports = router;
