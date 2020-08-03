@@ -3,7 +3,9 @@ const express = require('express');
 const Soccer = require('../models/soccer');
 const Comment = require('../models/comment');
 const Travel = require('../models/travel');
+const Coffee = require('../models/coffee');
 const middlewareObj = require('../middleware/middleware');
+const coffee = require('../models/coffee');
 let router = express.Router();
 
 // ==========================
@@ -23,7 +25,9 @@ router.get('/blog/travel/:id/comment/new', middlewareObj.isLoggedIn, async (req,
 });
 // Coffee
 router.get('/blog/coffee/:id/comment/new', middlewareObj.isLoggedIn, async (req, res) => {
-
+    let coffeeIdPostCommentOn = req.params.id;
+    let foundCoffee = await Coffee.findById(coffeeIdPostCommentOn);
+    res.render('comment/coffeeNew', {foundCoffee:foundCoffee});
 });
 
 // create comment
@@ -46,6 +50,7 @@ router.post('/blog/soccer/:id/comment', middlewareObj.isLoggedIn ,async function
     res.redirect('/blog/soccer/' + req.params.id);
 });
 
+// travel
 router.post('/blog/travel/:id/comment', middlewareObj.isLoggedIn, async (req, res) => {
     let targetTravelId = req.params.id;
     let foundTravel = await Travel.findById(targetTravelId);
@@ -58,6 +63,26 @@ router.post('/blog/travel/:id/comment', middlewareObj.isLoggedIn, async (req, re
     await foundTravel.save();
     res.redirect('/blog/travel/' + targetTravelId);
 });
+
+// coffee
+router.post('/blog/coffee/:id/comment', middlewareObj.isLoggedIn, async (req, res) => {
+    let coffee_id = req.params.id;
+    try {
+        let foundCoffeeData = await Coffee.findById(coffee_id);
+        let commentData = req.body.comment;
+        let commentCreate = await Comment.create(commentData);
+        commentCreate.author.id = req.user._id;
+        commentCreate.author.username = req.user.username;
+        await commentCreate.save();
+        foundCoffeeData.comments.push(commentCreate);
+        await foundCoffeeData.save();
+        req.flash('success', "Successfully Edit the comment");
+        res.redirect('/blog/coffee/' + coffee_id);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 // render edit page
 router.get('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
