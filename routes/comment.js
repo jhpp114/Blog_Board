@@ -106,7 +106,7 @@ router.get('/blog/travel/:id/comment/:comment_id', async (req, res) => {
         console.log(error);
     }
 });
-
+// redner edit page for coffee
 router.get('/blog/coffee/:id/comment/:comment_id', async (req, res) => {
     try {
         let foundComment = await Comment.findById(req.params.comment_id);
@@ -132,8 +132,38 @@ router.put('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,as
         req.flash("error", "Oops error on edit the comment");
         res.redirect('back');
     }
-
 });
+
+// put method for travel
+router.put('/blog/travel/:id/comment/:comment_id', middlewareObj.isAuthorize, async (req, rs) => {
+    try {
+        let updateData = req.body.comment;
+        let comment_id = req.params.comment_id;
+        await Comment.findByIdAndUpdate(comment_id, updateData);
+        req.flash("sucess", "Successfully Edit the Comment");
+        res.redirect('/blog/travel/' + req.params.id);
+    } catch(error) {
+        req.flash('error', "Error on editing the comment");
+        res.redirect('back');
+        console.log(error);
+    }
+});
+
+// put method for coffee
+router.put('/blog/coffee/:id/comment/:comment_id', middlewareObj.isAuthorize, async(req, res) => {
+    try {
+        let commentId = req.params.comment_id;
+        let updatedData = req.body.comment;
+        await Comment.findByIdAndUpdate(commentId, updatedData);
+        req.flash("success", "Successfully Edit the Comment");
+        res.redirect('/blog/coffee/' + req.params.id);
+    } catch(error) {
+        console.log(error);
+        req.flash("error", "Error on editing the comment");
+        res.redirect("back");
+    }
+});
+
 // delete the comment
 router.delete('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     // just delete comment without touching soccer should be ok.
@@ -149,5 +179,7 @@ router.delete('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize 
         res.redirect('back');
     }
 });
+
+
 
 module.exports = router;
