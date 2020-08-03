@@ -83,7 +83,6 @@ router.post('/blog/coffee/:id/comment', middlewareObj.isLoggedIn, async (req, re
     }
 });
 
-
 // render edit page
 router.get('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     try {
@@ -96,12 +95,34 @@ router.get('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,as
         res.redirect('back');
     }
 });
+
+// render edit page travel
+router.get('/blog/travel/:id/comment/:comment_id', async (req, res) => {
+    try {
+        let foundComment = await Comment.findById(req.params.comment_id);
+        let travelId = req.params.id;
+        res.render('comment/travelEdit', {travelId: travelId, foundComment:foundComment});
+    } catch(error) {
+        console.log(error);
+    }
+});
+
+router.get('/blog/coffee/:id/comment/:comment_id', async (req, res) => {
+    try {
+        let foundComment = await Comment.findById(req.params.comment_id);
+        let coffeeId = req.params.id;
+        res.render('comment/coffeeEdit', {foundComment:foundComment, coffeeId:coffeeId});
+    } catch(error) {
+        console.log(error);
+    }
+});
+
 // put method to store edited data into database
 router.put('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,async function(req, res) {
     try {
         let updateData = req.body.comment;
         let updateCommentId = req.params.comment_id;
-        let edit_target_data = await Comment.findByIdAndUpdate(updateCommentId, updateData);
+        await Comment.findByIdAndUpdate(updateCommentId, updateData);
         // console.log(edit_target_data);
         req.flash("success", "Successfully added comment");
         res.redirect('/blog/soccer/' + req.params.id);
