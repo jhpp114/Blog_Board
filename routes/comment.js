@@ -135,7 +135,7 @@ router.put('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize ,as
 });
 
 // put method for travel
-router.put('/blog/travel/:id/comment/:comment_id', middlewareObj.isAuthorize, async (req, rs) => {
+router.put('/blog/travel/:id/comment/:comment_id', middlewareObj.isAuthorize, async (req, res) => {
     try {
         let updateData = req.body.comment;
         let comment_id = req.params.comment_id;
@@ -180,6 +180,30 @@ router.delete('/blog/soccer/:id/comment/:comment_id', middlewareObj.isAuthorize 
     }
 });
 
+// delete travel comment
+router.delete('/blog/travel/:id/comment/:comment_id', middlewareObj.isAuthorize, async (req, res) => {
+    try {
+        await Comment.findByIdAndRemove(req.params.comment_id);
+        req.flash("success", "Successfully Delete the Comment");
+        res.redirect('/blog/travel/' + req.params.id);
+    } catch(error) {
+        console.log(error);
+        req.flash("error", "Fail to Delete the Comment");
+        res.redirect("back");
+    }
+});
 
+// delete the coffee comment
+router.delete('/blog/coffee/:id/comment/:comment_id', middlewareObj.isAuthorize, async (req, res) => {
+    try {
+        await Comment.findByIdAndRemove(req.params.comment_id);
+        req.flash("success", "Successfully Delete the Comment");;
+        res.redirect('/blog/coffee/' + req.params.id);
+    } catch(error) {
+        console.log(error);
+        req.flash("error", "Fail to Delete the Comment");
+        res.redirect("back");
+    }
+});
 
 module.exports = router;
