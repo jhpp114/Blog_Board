@@ -91,4 +91,17 @@ router.put('/blog/coffee/:id', async (req, res) => {
     res.send("Hello Edit Coffee");
 });
 
+// delete post
+router.delete('/blog/coffee/:id', async (req, res) => {
+    try {
+        await Coffee.findByIdAndRemove(req.params.id);
+        req.flash("success", "Successfully Delete the Post");
+        res.redirect('/blog/coffee/');
+    } catch (error) {
+        req.flash("error", "Error on Deleteing Data");
+        res.redirect("back");
+        console.log(error);
+    }
+});
+
 module.exports = router;
