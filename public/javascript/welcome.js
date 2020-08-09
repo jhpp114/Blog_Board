@@ -1,4 +1,21 @@
 // objects
+// =====================================
+// ============= Scroll ================
+// =====================================
+const arrow_up = document.querySelector('.arrow_up');
+arrow_up.addEventListener('click', scroll_up);
+
+function scroll_up() {
+    window.scroll({
+        top: 0
+    ,   left: 0
+    ,   behavior: "smooth"
+    });
+}
+
+// =====================================
+// ============= Slider ================
+// =====================================
 function getSlideData() {
     const slideData = [ 
         {

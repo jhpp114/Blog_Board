@@ -188,6 +188,67 @@
     letter-spacing: 0.1rem;
 }
 
+.section_divider {
+    width: 100%;
+    background-color: var(--navigation_color);
+}
+
+.footer {
+    margin: 1rem;
+    padding: 2rem;
+    min-height: 5rem;
+}
+
+.footer > .footer_container {
+    display: flex;
+    justify-content: space-between;
+    color: var(--navigation_font_color);
+    align-items: center;
+}
+
+.footer > .footer_container > .credit_author > h4 {
+    margin: 0.5rem 0rem;
+}
+
+.footer > .footer_container > .credit_author > h4 > .author{
+    font-weight: normal;
+    font-size: 1.0rem;
+}
+
+.footer > .footer_container > .credit_author > h4 > .icons {
+    font-weight: normal;
+    font-size: 1.0rem;
+}
+
+.footer > .footer_container > .credit_author > h4 > .icons > a {
+    color: var(--navigation_font_color);
+}
+
+.footer > .footer_container > .credit_author > h4 > .images {
+    font-weight: normal;
+    font-size: 1.0rem;
+}
+
+.footer > .footer_container > .credit_author > h4 > .images > a {
+    color: var(--navigation_font_color);
+}
+
+.footer > .footer_container > .git_repo > a {
+    color: var(--navigation_font_color);
+}
+
+.footer > .footer_container > .git_repo > a > i {
+    font-size: 2rem;
+    color: var(--navigation_font_color);
+}
+
+.footer > .footer_container > .arrow_up > i {
+    font-size: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--navigation_color);
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+}
 
 /* ===================================================*/
 /* ===================/blog Page======================*/
