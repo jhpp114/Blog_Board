@@ -1,7 +1,10 @@
 // Routes for Soccer
 const express = require('express');
 const Soccer = require('../models/soccer');
+const Travel = require('../models/travel');
+const Coffee = require('../models/coffee');
 const middlewareObj = require('../middleware/middleware');
+const fetch = require('node-fetch');
 let router = express.Router();
 
 // ===============
@@ -9,9 +12,15 @@ let router = express.Router();
 // ===============
 // display all soccer data
 
-router.get('/blogs/recent', async (req, res) => { 
-    let soccer_recent = await Soccer.find({}).sort('-createdDate').limit(3);
-    res.send(soccer_recent);
+router.get('/blogs', async (req, res) => { 
+    try {
+        let soccer_recent = await Soccer.find({}).sort('-createdDate').limit(3);
+        let travel_recent = await Travel.find({}).sort('-createDate').limit(3);
+        let coffee_recent = await Coffee.find({}).sort('-createdDate').limit(3);
+        res.render('blogs', {soccer_recent:soccer_recent, travel_recent:travel_recent, coffee_recent:coffee_recent});
+    } catch (error) {
+        console.log(error);
+    }    
 });
 
 router.get('/blog/soccer', async function(req, res) {

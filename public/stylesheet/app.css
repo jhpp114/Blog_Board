@@ -269,6 +269,8 @@
 .blogs_blog_contents {
     border: 1px solid var(--navigation_color);
     padding: 0.5rem;
+    width: 90%;
+    margin: 2rem auto;
 }
 
 .figure img {
@@ -280,6 +282,37 @@
 .figure img:hover {
     box-shadow: 2px 2px 2px 2px red;
 }
+
+.blog_updated_items {
+    width: 90%;
+    margin: 1rem auto;
+    border: 1px solid var(--navigation_color);
+    padding: 0.9rem;
+}
+
+.blog_updated_items > .blog_soccer_updated {
+    display: flex;
+}
+
+.blog_updated_items > .blog_soccer_updated > .soccer_recent_content {
+    width: 35%;
+}
+
+.blog_updated_items > .blog_soccer_updated > .soccer_recent_content > .soccer_info_container {
+    display: flex;
+    margin: 1.5rem;
+}
+
+.blog_updated_items > .blog_soccer_updated > .soccer_recent_content > .soccer_info_container > .soccer_recent_img > img {
+    width: 200px;
+    height: 180px;
+    margin-right: 0.8rem;
+} 
+
+.blog_updated_items > .blog_soccer_updated > .soccer_recent_content > .soccer_info_container > .soccer_recent_info {
+    padding: 0.3rem;
+}
+
 /* ===================================================*/
 /* =================blog/soccer Page==================*/
 /* ===================================================*/

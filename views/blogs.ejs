@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 <br><br>
-<div class="container blogs_blog_contents">
+<div class="blogs_blog_contents">
     <h3>Pick Blog You are interested in!</h3><br>
     <div class="row">
             <div class="col-md-4">
@@ -33,11 +33,56 @@
 </div>
 <!-- Updated Item Section -->
 <section class="blog_updated_items">
+    <h2>Most Recent Updated Post</h2>
     <div class="blog_soccer_updated">
-        <h4>Most Recent Updated Items</h4>
-        <% async function getRecentSoccer() { %>
-           <% let data = await fetch('/blogs/recent'); %>
-        <% } %>
+        <div class="soccer_recent_content">
+            <h4>Three the Most Recently Post in Soccer Blog</h4>
+            <% soccer_recent.forEach((recent_soccer_data) => { %>
+            <div class="soccer_info_container">    
+                <div class="soccer_recent_img">
+                    <img src="<%=recent_soccer_data.image%>" alt="soccer image">
+                </div>
+                <div class="soccer_recent_info">
+                    <h4><%=recent_soccer_data.teamname%></h4>
+                    <p><%=recent_soccer_data.description.substring(0,10)%>...</p>
+                    <p><%=recent_soccer_data.createdDate.toDateString()%></p>
+                    <p>Posted By: <%=recent_soccer_data.author.username%></p>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <div class="soccer_recent_content">
+            <h4>Three the Most Recently Post in Travel Blog</h4>
+            <% travel_recent.forEach((recent_travel_data) => { %>
+                <div class="soccer_info_container">    
+                    <div class="soccer_recent_img">
+                        <img src="<%=recent_travel_data.image%>" alt="soccer image">
+                    </div>
+                    <div class="soccer_recent_info">
+                        <h4><%=recent_travel_data.placeName%></h4>
+                        <p><%=recent_travel_data.description.substring(0,10)%>...</p>
+                        <p><%=recent_travel_data.createDate.toDateString()%></p>
+                        <p>Posted By: <%=recent_travel_data.author.username%></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+        <div class="soccer_recent_content">
+            <h4>Three the Most Recently Post in Coffee Blog</h4>
+            <% coffee_recent.forEach((recent_coffee_data) => { %>
+                <div class="soccer_info_container">    
+                    <div class="soccer_recent_img">
+                        <img src="<%=recent_coffee_data.image%>" alt="soccer image">
+                    </div>
+                    <div class="soccer_recent_info">
+                        <h4><%=recent_coffee_data.coffeename%></h4>
+                        <p><%=recent_coffee_data.description.substring(0,10)%>...</p>
+                        <p><%=recent_coffee_data.createdDate.toDateString()%></p>
+                        <p>Posted By: <%=recent_coffee_data.author.username%></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
     </div>
 </section>
 

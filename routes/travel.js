@@ -1,6 +1,7 @@
 const express = require('express');
 const Travel = require('../models/travel');
 const middleware = require('../middleware/middleware');
+const fetch = require('node-fetch');
 const router = express.Router();
 
 // Display Travel Posts

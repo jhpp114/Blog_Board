@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const fetch = require('node-fetch');
 const PORT_NUMBER = 3000;
 const app = express();
 // =================================
