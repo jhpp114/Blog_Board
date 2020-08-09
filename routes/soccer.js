@@ -8,6 +8,12 @@ let router = express.Router();
 // ===Soccer======
 // ===============
 // display all soccer data
+
+router.get('/blogs/recent', async (req, res) => { 
+    let soccer_recent = await Soccer.find({}).sort('-createdDate').limit(3);
+    res.send(soccer_recent);
+});
+
 router.get('/blog/soccer', async function(req, res) {
     let dummyDataSoccer = await Soccer.find({});
     res.render('soccer/soccer', {dummySoccerTeams: dummyDataSoccer});

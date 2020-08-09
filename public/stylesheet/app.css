@@ -266,6 +266,11 @@
 /* ===================================================*/
 /* ===================/blog Page======================*/
 /* ===================================================*/
+.blogs_blog_contents {
+    border: 1px solid var(--navigation_color);
+    padding: 0.5rem;
+}
+
 .figure img {
     width: 200px;
     height: 150px;

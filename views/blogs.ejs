@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 <br><br>
-<div class="container">
+<div class="container blogs_blog_contents">
     <h3>Pick Blog You are interested in!</h3><br>
     <div class="row">
             <div class="col-md-4">
@@ -22,24 +22,6 @@
             </div>
             <div class="col-md-4">
                 <figure class="figure">
-                    <a href="/blog/programming">
-                        <img class="figure-img img-fluid rounded" src="https://images.unsplash.com/photo-1525373698358-041e3a460346?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" 
-                        alt="">
-                    </a>
-                    <figcaption class="figure-caption"><a href="/blog/programming">View Programming Blog</a></figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4">
-                <figure class="figure">
-                    <a href="/blog/nature">
-                        <img class="figure-img img-fluid rounded" src="https://images.unsplash.com/photo-1523616774253-1ff2246e93f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" 
-                        alt="">
-                    </a>
-                    <figcaption class="figure-caption"><a href="/blog/nature">View Nature Blog</a></figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4">
-                <figure class="figure">
                     <a href="/blog/coffee">
                         <img class="figure-img img-fluid rounded" src="https://images.unsplash.com/photo-1518057111178-44a106bad636?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" 
                         alt="">
@@ -48,13 +30,15 @@
                 </figure>
             </div>
     </div>
-    
 </div>
-
-    <!-- Soccer -->
-    <!-- Travel -->
-    <!-- Programming -->
-    <!-- Nature -->
-    <!-- Coffee -->
+<!-- Updated Item Section -->
+<section class="blog_updated_items">
+    <div class="blog_soccer_updated">
+        <h4>Most Recent Updated Items</h4>
+        <% async function getRecentSoccer() { %>
+           <% let data = await fetch('/blogs/recent'); %>
+        <% } %>
+    </div>
+</section>
 
 <%- include('partials/footer') %>
