@@ -7,16 +7,6 @@ function getSlideData() {
         }
         ,
         {
-            img: "../images/Programming_main.jpg"
-        ,   description: "The Programming Blog"
-        }
-        ,
-        {
-            img: "../images/Nature_main.jpg"
-        ,   description: "The Nature Blog"
-        }
-        ,
-        {
             img: "../images/Coffee_main.jpg"
         ,   description: "The Coffee Blog"
         }

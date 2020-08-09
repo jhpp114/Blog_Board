@@ -9,19 +9,10 @@
         <div class="intro_content">
             <h3>Welcome to my first express webframe work</h3>
             <p>I made this blog to experience basics of express webframework
-            and basic idea of RESTful</p>
-            <div class="lists_webframework">
-                <h4>Following framework had been used</h4>    
-                <div class="lists_tags">
-                    <span>Express</span>
-                    <span>Ejs</span>
-                    <span>Mongoose</span>
-                    <span>method-override</span>
-                    <span>Passport</span>
-                    <span>passport-local</span>
-                    <span>passport-local-mongoose</span>
-                    <span>express-session</span>
-                </div>
+            and basic idea of RESTful API
+            </p>
+            <div>
+                <a href="/blogs">Click to Visit the Blog</a> 
             </div>
         </div>
     </header>
@@ -30,23 +21,50 @@
 <!-- Main -->
 <section>
     <main class="main_section_intro">
-        <h3>List of Blogs</h3>
-        <div class="slide_show">
-            <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
-            <img src="../images/Soccer_main.jpg" alt="soccer img">
-            <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-            <hr class="list_blog_line">
-            <caption class="main_blog_description">
-                <p>The Soccer Blog</p>
-            </caption>
+        <div class="blog_list_left">
+            <h3>List of Blogs</h3>
+            <div class="slide_show">
+                <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                <img src="../images/Soccer_main.jpg" alt="soccer img">
+                <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                <hr class="list_blog_line">
+                <caption class="main_blog_description">
+                    <p>The Soccer Blog</p>
+                </caption>
+            </div>
         </div>
-        <h3 class="hoverMessage">
-            <a href="/blogs">Visit the Blogs</a>
-        </h3>
+        <div class="blog_list_right">
+            <p class="blog_list_explanation">The following Toy Project contains of total 3 blogs</p>
+            <ul>
+                <li>Soccer</li>
+                <li>Travel</li>
+                <li>Coffee</li>
+            </ul>
+        </div>
     </main>
 </section>
 <!-- End Main -->
-<!-- Side News -->
-
-<!-- End Side News -->
+<!-- Lists of Webframe work used -->
+<section class="lists_webframeworks">
+    <div class="lists_framework_container">
+        <h3>Lists of Web Framework used in this Toy Project</h3>
+        <ul>
+            <li>connect-flash</li>
+            <li>ejs</li>
+            <li>express</li>
+            <li>express-session</li>
+            <li>method-override</li>
+            <li>mongoose</li>
+            <li>passport</li>
+            <li>passport-local</li>
+            <li>passport-local-mongoose</li>
+        </ul>
+    </div>
+</section>
+<!-- Footer -->
+<footer>
+    
+</footer>
+<!-- End Footer -->
+<!-- End webframework -->
 <%- include('partials/footer') %>
