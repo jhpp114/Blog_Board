@@ -290,12 +290,19 @@
     padding: 0.9rem;
 }
 
+.blog_updated_items > h2 {
+    margin-bottom: 2rem;
+}
+
 .blog_updated_items > .blog_soccer_updated {
     display: flex;
 }
 
 .blog_updated_items > .blog_soccer_updated > .soccer_recent_content {
     width: 35%;
+    border: 1px solid var(--navigation_color);
+    padding: 0.5rem;
+    margin: 0rem 0.5rem;
 }
 
 .blog_updated_items > .blog_soccer_updated > .soccer_recent_content > .soccer_info_container {
