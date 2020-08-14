@@ -35,13 +35,23 @@ const User = require('./models/user');
 // ==================
 // =Database Connect=
 // ==================
-mongoose.connect('mongodb://localhost/my_blog_board', {
+// mongoose.connect('mongodb://localhost/my_blog_board', {
+//     useNewUrlParser: true
+// ,   useUnifiedTopology: true
+// })
+// .then(() => console.log("DB Connected"))
+// .catch( (error) => console.log(`Error on connecting database ${error}`));
+// mongoose.set('useFindAndModify', false);
+let MONGO_PASSWORD = process.env.MONGOPASSWORD;
+
+mongoose.connect(`mongodb+srv://Jun:${MONGO_PASSWORD}@cluster0.enccr.mongodb.net/blog?retryWrites=true&w=majority`, {
     useNewUrlParser: true
 ,   useUnifiedTopology: true
 })
 .then(() => console.log("DB Connected"))
 .catch( (error) => console.log(`Error on connecting database ${error}`));
 mongoose.set('useFindAndModify', false);
+
 
 // app configure
 app.set('view engine', 'ejs');
