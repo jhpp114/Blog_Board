@@ -44,7 +44,7 @@ const User = require('./models/user');
 // mongoose.set('useFindAndModify', false);
 let MONGO_PASSWORD = process.env.MONGOPASSWORD;
 
-mongoose.connect(`mongodb+srv://Jun:${MONGO_PASSWORD}@cluster0.enccr.mongodb.net/blog?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://Jun:${MONGO_PASSWORD}@cluster0.enccr.mongodb.net/my_blog_board?retryWrites=true&w=majority`, {
     useNewUrlParser: true
 ,   useUnifiedTopology: true
 })
