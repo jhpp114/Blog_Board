@@ -42,8 +42,8 @@ const User = require('./models/user');
 // .then(() => console.log("DB Connected"))
 // .catch( (error) => console.log(`Error on connecting database ${error}`));
 // mongoose.set('useFindAndModify', false);
-let MONGO_PASSWORD = process.env.MONGOPASSWORD;
 
+let MONGO_PASSWORD = process.env.MONGOPASSWORD;
 mongoose.connect(`mongodb+srv://Jun:0505007pP@cluster0.enccr.mongodb.net/my_blog_board?retryWrites=true&w=majority`, {
     useNewUrlParser: true
 ,   useCreateIndex: true

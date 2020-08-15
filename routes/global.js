@@ -11,9 +11,9 @@ router.get('/', function(req, res) {
     res.render('welcome');
 });
 
-router.get('/blogs', function(req, res) {
-    res.render('blogs');
-});
+// router.get('/blogs', function(req, res) {
+//     res.render('blogs');
+// });
 
 // =========================
 // ===User Authentication===
