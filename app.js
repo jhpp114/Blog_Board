@@ -46,7 +46,7 @@ let MONGO_PASSWORD = process.env.MONGOPASSWORD;
 
 mongoose.connect(`mongodb+srv://Jun:0505007pP@cluster0.enccr.mongodb.net/my_blog_board?retryWrites=true&w=majority`, {
     useNewUrlParser: true
-,   useUnifiedTopology: true
+,   useCreateIndex: true
 })
 .then(() => console.log("DB Connected"))
 .catch( (error) => console.log(`Error on connecting database ${error}`));
