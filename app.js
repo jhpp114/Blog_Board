@@ -35,22 +35,22 @@ const User = require('./models/user');
 // ==================
 // =Database Connect=
 // ==================
-// mongoose.connect('mongodb://localhost/my_blog_board', {
-//     useNewUrlParser: true
-// ,   useUnifiedTopology: true
-// })
-// .then(() => console.log("DB Connected"))
-// .catch( (error) => console.log(`Error on connecting database ${error}`));
-// mongoose.set('useFindAndModify', false);
-
-let MONGO_PASSWORD = process.env.MONGOPASSWORD;
-mongoose.connect(`mongodb+srv://Jun:0505007pP@cluster0.enccr.mongodb.net/my_blog_board?retryWrites=true&w=majority`, {
+mongoose.connect('mongodb://localhost/my_blog_board', {
     useNewUrlParser: true
-,   useCreateIndex: true
+,   useUnifiedTopology: true
 })
 .then(() => console.log("DB Connected"))
 .catch( (error) => console.log(`Error on connecting database ${error}`));
 mongoose.set('useFindAndModify', false);
+
+// let MONGO_PASSWORD = process.env.MONGOPASSWORD;
+// mongoose.connect(`mongodb+srv://Jun:0505007pP@cluster0.enccr.mongodb.net/my_blog_board?retryWrites=true&w=majority`, {
+//     useNewUrlParser: true
+// ,   useCreateIndex: true
+// })
+// .then(() => console.log("DB Connected"))
+// .catch( (error) => console.log(`Error on connecting database ${error}`));
+// mongoose.set('useFindAndModify', false);
 
 
 // app configure
